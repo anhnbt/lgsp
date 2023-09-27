@@ -1,25 +1,15 @@
 package com.anhnbt.lgsp;
-
-import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -47,11 +37,13 @@ public class SecurityConfig {
                                 AntPathRequestMatcher.antMatcher("/h2-console/**"),
                                 AntPathRequestMatcher.antMatcher("/auth/welcome"),
                                 AntPathRequestMatcher.antMatcher("/auth/addNewUser"),
-                                AntPathRequestMatcher.antMatcher("/auth/generateToken"),
-                                AntPathRequestMatcher.antMatcher("/auth/user/**"),
-                                AntPathRequestMatcher.antMatcher("/auth/admin/**"),
-                                AntPathRequestMatcher.antMatcher("/api/**")
+                                AntPathRequestMatcher.antMatcher("/api/generateToken"),
+                                AntPathRequestMatcher.antMatcher("/auth/generateToken")
                         ).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api/user/**"),
+                                         AntPathRequestMatcher.antMatcher("/api/admin/**"),
+                                         AntPathRequestMatcher.antMatcher("/api/**"))
+                        .authenticated() // Các API cần xác thực
                 )
                 .headers(headers -> headers.frameOptions().disable())
                 .csrf(csrf -> csrf

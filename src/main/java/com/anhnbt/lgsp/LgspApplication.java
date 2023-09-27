@@ -25,8 +25,10 @@ public class LgspApplication implements CommandLineRunner {
 		// Khi chương trình chạy
 		// Insert vào csdl một user.
 		UserInfo user = new UserInfo();
+		user.setUsername("user123");
 		user.setName("anhnbt");
 		user.setPassword(passwordEncoder.encode("mr.robot"));
+		user.setRoles("ROLE_ADMIN");
 		userInfoRepository.save(user);
 		System.out.println(user);
 	}

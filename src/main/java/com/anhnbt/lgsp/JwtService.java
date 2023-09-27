@@ -1,10 +1,9 @@
 package com.anhnbt.lgsp;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -54,12 +53,27 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(getSignKey(jwtSecret))
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+        try {
+            return Jwts
+                    .parserBuilder()
+                    .setSigningKey(getSignKey(jwtSecret))
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (ExpiredJwtException e) {
+            // Token đã hết hạn
+            // Xử lý tùy theo yêu cầu của bạn
+        } catch (MalformedJwtException e) {
+            // Token không đúng định dạng JWT
+            // Xử lý tùy theo yêu cầu của bạn
+        } catch (SignatureException e) {
+            // Không thể xác minh chữ ký, có thể do sai khóa bí mật
+            // Xử lý tùy theo yêu cầu của bạn
+        } catch (Exception e) {
+            // Các trường hợp ngoại lệ khác
+            // Xử lý tùy theo yêu cầu của bạn
+        }
+        return null; // Trả về null nếu có lỗi
     }
 
     private Boolean isTokenExpired(String token) {
