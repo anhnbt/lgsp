@@ -1,7 +1,7 @@
 package com.anhnbt.lgsp.repository;
 
-import com.anhnbt.lgsp.model.Country;
-import com.anhnbt.lgsp.model.Currency;
+import com.anhnbt.lgsp.countries.Country;
+import com.anhnbt.lgsp.countries.Currency;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 

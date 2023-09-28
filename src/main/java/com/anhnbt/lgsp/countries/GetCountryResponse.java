@@ -1,6 +1,4 @@
-package com.anhnbt.lgsp.model;
-
-import com.anhnbt.lgsp.model.Country;
+package com.anhnbt.lgsp.countries;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
