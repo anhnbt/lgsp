@@ -1,5 +1,8 @@
-package com.anhnbt.lgsp;
+package com.anhnbt.lgsp.service;
 
+import com.anhnbt.lgsp.model.UserInfo;
+import com.anhnbt.lgsp.model.UserInfoDetails;
+import com.anhnbt.lgsp.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

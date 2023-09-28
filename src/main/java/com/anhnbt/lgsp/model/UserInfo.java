@@ -1,4 +1,4 @@
-package com.anhnbt.lgsp;
+package com.anhnbt.lgsp.model;
 
 import jakarta.persistence.*;
 

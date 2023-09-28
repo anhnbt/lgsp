@@ -1,4 +1,4 @@
-package com.anhnbt.lgsp;
+package com.anhnbt.lgsp.request;
 
 public class AuthRequest {
   

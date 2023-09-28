@@ -1,4 +1,4 @@
-package com.anhnbt.lgsp;
+package com.anhnbt.lgsp.response;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

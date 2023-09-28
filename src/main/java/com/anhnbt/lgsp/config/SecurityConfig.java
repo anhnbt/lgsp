@@ -1,4 +1,6 @@
-package com.anhnbt.lgsp;
+package com.anhnbt.lgsp.config;
+import com.anhnbt.lgsp.filter.JwtAuthFilter;
+import com.anhnbt.lgsp.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,7 @@
 package com.anhnbt.lgsp;
 
+import com.anhnbt.lgsp.model.UserInfo;
+import com.anhnbt.lgsp.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +18,7 @@ public class LgspApplication implements CommandLineRunner {
 
 
 	@Autowired
-	UserInfoRepository userInfoRepository;
+    UserInfoRepository userInfoRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 

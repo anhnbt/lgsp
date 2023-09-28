@@ -1,4 +1,4 @@
-package com.anhnbt.lgsp;
+package com.anhnbt.lgsp.service;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

@@ -1,5 +1,6 @@
-package com.anhnbt.lgsp;
+package com.anhnbt.lgsp.repository;
 
+import com.anhnbt.lgsp.model.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
