@@ -2,7 +2,6 @@ package com.anhnbt.lgsp.service;
 
 import com.anhnbt.lgsp.request.XacMinhThongTinNhanThan;
 import com.anhnbt.lgsp.response.CongdanCollection;
-import com.anhnbt.lgsp.response.XacMinhThongTinNhanThanResponse;
 import org.springframework.stereotype.Service;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -13,9 +12,7 @@ import java.util.GregorianCalendar;
 @Service
 public class YourService {
 
-    public XacMinhThongTinNhanThanResponse xacMinhThongTinNhanThan(XacMinhThongTinNhanThan request) {
-        // Tạo một XacMinhThongTinNhanThanResponse mới
-        XacMinhThongTinNhanThanResponse response = new XacMinhThongTinNhanThanResponse();
+    public CongdanCollection xacMinhThongTinNhanThan(XacMinhThongTinNhanThan request) {
 
         // Tạo một CongdanCollection mới
         CongdanCollection congDanCollection = new CongdanCollection();
@@ -77,10 +74,7 @@ public class YourService {
         // Thêm CongDan vào CongdanCollection
         congDanCollection.getCongDan().add(congDan);
 
-        // Đặt CongdanCollection vào XacMinhThongTinNhanThanResponse
-        response.setCongdanCollection(congDanCollection);
-
-        return response;
+        return congDanCollection;
     }
 
     public static XMLGregorianCalendar createXMLGregorianCalendarFromDate(java.util.Date date) {

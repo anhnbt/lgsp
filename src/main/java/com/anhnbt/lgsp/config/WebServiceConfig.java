@@ -20,7 +20,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     private static final String INPUT_XSD_PATH = "XacMinhThongTinNhanThanRequest.xsd";
 
     // Đường dẫn tới tệp XSD cho output
-    private static final String OUTPUT_XSD_PATH = "XacMinhThongTinNhanThanResponse.xsd";
+    private static final String OUTPUT_XSD_PATH = "CongdanCollection.xsd";
 
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
@@ -41,22 +41,23 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     }
 
     @Bean(name = "XacMinhThongTinNhanThanRequest")
-    public DefaultWsdl11Definition inputWsdlDefinition(XsdSchema inputSchema) {
+    public DefaultWsdl11Definition xacMinhThongTinNhanThanWsdlDefinition(XsdSchema xacMinhThongTinNhanThanSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("XacMinhThongTinNhanThanRequestPort");
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://gtel.vn/qldc");
-        wsdl11Definition.setSchema(inputSchema);
+        wsdl11Definition.setSchema(xacMinhThongTinNhanThanSchema);
         return wsdl11Definition;
     }
 
-    @Bean(name = "XacMinhThongTinNhanThanResponse")
-    public DefaultWsdl11Definition outputWsdlDefinition(XsdSchema outputSchema) {
+    @Bean(name = "CongdanCollection")
+    public DefaultWsdl11Definition congdanCollectionWsdlDefinition(XsdSchema congdanCollectionSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("XacMinhThongTinNhanThanResponsePort");
+        wsdl11Definition.setPortTypeName("CongdanCollectionPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://gtel.vn/qldc");
-        wsdl11Definition.setSchema(outputSchema);
+        wsdl11Definition.setTargetNamespace("http://www.mic.gov.vn/dancu/1.0"); // Đặt tên miền cho CongdanCollection
+        wsdl11Definition.setSchema(congdanCollectionSchema);
+
         return wsdl11Definition;
     }
 
@@ -66,12 +67,12 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     }
 
     @Bean
-    public XsdSchema inputSchema() {
+    public XsdSchema xacMinhThongTinNhanThanSchema() {
         return new SimpleXsdSchema(new ClassPathResource(INPUT_XSD_PATH));
     }
 
     @Bean
-    public XsdSchema outputSchema() {
+    public XsdSchema congdanCollectionSchema() {
         return new SimpleXsdSchema(new ClassPathResource(OUTPUT_XSD_PATH));
     }
 }

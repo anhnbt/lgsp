@@ -72,12 +72,4 @@
             <xs:attribute name="id" type="xs:string"/>
         </xs:complexType>
     </xs:element>
-
-    <xs:element name="XacMinhThongTinNhanThanResponse">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="dc:CongdanCollection"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
 </xs:schema>

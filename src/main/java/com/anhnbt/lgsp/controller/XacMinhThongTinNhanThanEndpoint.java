@@ -1,7 +1,7 @@
 package com.anhnbt.lgsp.controller;
 
 import com.anhnbt.lgsp.request.XacMinhThongTinNhanThan;
-import com.anhnbt.lgsp.response.XacMinhThongTinNhanThanResponse;
+import com.anhnbt.lgsp.response.CongdanCollection;
 import com.anhnbt.lgsp.service.YourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -19,9 +19,7 @@ public class XacMinhThongTinNhanThanEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "XacMinhThongTinNhanThan")
     @ResponsePayload
-    public XacMinhThongTinNhanThanResponse xacMinhThongTinNhanThan(@RequestPayload XacMinhThongTinNhanThan request) {
-        // Xử lý request và trả về response
-        XacMinhThongTinNhanThanResponse response = yourService.xacMinhThongTinNhanThan(request);
-        return response;
+    public CongdanCollection xacMinhThongTinNhanThan(@RequestPayload XacMinhThongTinNhanThan request) {
+        return yourService.xacMinhThongTinNhanThan(request);
     }
 }
