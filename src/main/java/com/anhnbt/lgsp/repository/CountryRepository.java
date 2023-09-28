@@ -2,10 +2,10 @@ package com.anhnbt.lgsp.repository;
 
 import com.anhnbt.lgsp.model.Country;
 import com.anhnbt.lgsp.model.Currency;
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 

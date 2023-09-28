@@ -1,8 +1,8 @@
 package com.anhnbt.lgsp.controller;
 
 import com.anhnbt.lgsp.repository.CountryRepository;
-import com.anhnbt.lgsp.request.GetCountryRequest;
-import com.anhnbt.lgsp.response.GetCountryResponse;
+import com.anhnbt.lgsp.model.GetCountryRequest;
+import com.anhnbt.lgsp.model.GetCountryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

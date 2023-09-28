@@ -1,8 +1,8 @@
 package com.anhnbt.lgsp.model;
 
+
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
-
 
 /**
  * <p>Java class for currency.
