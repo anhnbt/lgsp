@@ -1,24 +1,17 @@
 package com.anhnbt.lgsp.response;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class ApiResponse {
+    private Object data;
 
-    private String message;
-
-    public ApiResponse() {
+    public ApiResponse(Object data) {
+        this.data = data;
     }
 
-    public ApiResponse(String message) {
-        this.message = message;
+    public Object getData() {
+        return data;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setData(Object data) {
+        this.data = data;
     }
 }

@@ -1,9 +1,10 @@
 package com.anhnbt.lgsp.config;
+
 import com.anhnbt.lgsp.filter.JwtAuthFilter;
-import com.anhnbt.lgsp.service.UserInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.anhnbt.lgsp.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -22,13 +23,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    private JwtAuthFilter jwtAuthFilter;
-    private UserInfoService userInfoService;
-    @Autowired
-    void Constructor(UserInfoService userInfoService,
-                     JwtAuthFilter jwtAuthFilter) {
+    private final JwtAuthFilter jwtAuthFilter;
+    private final CustomUserDetailsService customUserDetailsService;
+
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService,
+                          JwtAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
-        this.userInfoService = userInfoService;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     @Bean
@@ -39,20 +40,15 @@ public class SecurityConfig {
                                 AntPathRequestMatcher.antMatcher("/h2-console/**"),
                                 AntPathRequestMatcher.antMatcher("/auth/welcome"),
                                 AntPathRequestMatcher.antMatcher("/auth/addNewUser"),
-                                AntPathRequestMatcher.antMatcher("/api/generateToken"),
-                                AntPathRequestMatcher.antMatcher("/auth/generateToken")
+                                AntPathRequestMatcher.antMatcher("/auth/generateToken"),
+                                AntPathRequestMatcher.antMatcher("/ws/**")
                         ).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/api/user/**"),
-                                         AntPathRequestMatcher.antMatcher("/api/admin/**"),
-                                         AntPathRequestMatcher.antMatcher("/api/**"))
+                                AntPathRequestMatcher.antMatcher("/api/admin/**"),
+                                AntPathRequestMatcher.antMatcher("/api/**"))
                         .authenticated() // Các API cần xác thực
                 )
-                .headers(headers -> headers.frameOptions().disable())
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(
-                                AntPathRequestMatcher.antMatcher("/h2-console/**")
-                        )
-                )
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
@@ -61,8 +57,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-
 
 
     // Password Encoding
@@ -75,7 +69,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userInfoService);
+        authenticationProvider.setUserDetailsService(customUserDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
