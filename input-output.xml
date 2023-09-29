@@ -1,0 +1,23 @@
+Input:
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dan=<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dan="http://dancuquocgia.bca">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <dan:XacThucThongTinCongDanRequest>
+         <dan:MaYeuCau>string</dan:MaYeuCau>
+         <dan:MaDichVu>033</dan:MaDichVu>
+         <dan:MaCanBo>VDXP_VPCP </dan:MaCanBo>
+         <dan:SoDinhDanh>string</dan:SoDinhDanh>
+         <dan:SoCMND>string</dan:SoCMND>
+         <dan:HoVaTen>string</dan:HoVaTen>
+      </dan:XacThucThongTinCongDanRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+Output:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <SOAP-ENV:Body>
+      <ns2:KetQuaXacThucResponse xmlns:ns2="http://dancuquocgia.bca">
+         <ns2:TonTai>true</ns2:TonTai>
+      </ns2:KetQuaXacThucResponse>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
