@@ -16,11 +16,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
 
-    // Đường dẫn tới tệp XSD cho input
-    private static final String INPUT_XSD_PATH = "XacMinhThongTinNhanThanRequest.xsd";
-
-    // Đường dẫn tới tệp XSD cho output
-    private static final String OUTPUT_XSD_PATH = "CongdanCollection.xsd";
+    private static final String INPUT_XSD_PATH = "XacThucThongTinCongDan.xsd";
 
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
@@ -30,49 +26,23 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "countries")
-    public DefaultWsdl11Definition serviceCountriesWsdl(XsdSchema countriesSchema) {
+    @Bean(name = "XacThucThongTinCongDan")
+    public DefaultWsdl11Definition xacThucThongTinCongDanWsdlDefinition(XsdSchema xacThucThongTinCongDanSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("CountriesPort");
+        wsdl11Definition.setPortTypeName("XacThucThongTinCongDanPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://spring.io/guides/gs-producing-web-service");
-        wsdl11Definition.setSchema(countriesSchema);
-        return wsdl11Definition;
-    }
+        wsdl11Definition.setTargetNamespace("http://dancuquocgia.bca");
 
-    @Bean(name = "XacMinhThongTinNhanThanRequest")
-    public DefaultWsdl11Definition xacMinhThongTinNhanThanWsdlDefinition(XsdSchema xacMinhThongTinNhanThanSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("XacMinhThongTinNhanThanRequestPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://gtel.vn/qldc");
-        wsdl11Definition.setSchema(xacMinhThongTinNhanThanSchema);
-        return wsdl11Definition;
-    }
+        // Đăng ký phần tử input và output với các tên khác nhau
+        wsdl11Definition.setRequestSuffix("Request"); // Không thêm suffix cho input
+        wsdl11Definition.setResponseSuffix("Response"); // Thêm suffix "Response" cho output
 
-    @Bean(name = "CongdanCollection")
-    public DefaultWsdl11Definition congdanCollectionWsdlDefinition(XsdSchema congdanCollectionSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("CongdanCollectionPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://www.mic.gov.vn/dancu/1.0"); // Đặt tên miền cho CongdanCollection
-        wsdl11Definition.setSchema(congdanCollectionSchema);
-
+        wsdl11Definition.setSchema(xacThucThongTinCongDanSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema countriesSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("countries.xsd"));
-    }
-
-    @Bean
-    public XsdSchema xacMinhThongTinNhanThanSchema() {
+    public XsdSchema xacThucThongTinCongDanSchema() {
         return new SimpleXsdSchema(new ClassPathResource(INPUT_XSD_PATH));
-    }
-
-    @Bean
-    public XsdSchema congdanCollectionSchema() {
-        return new SimpleXsdSchema(new ClassPathResource(OUTPUT_XSD_PATH));
     }
 }
