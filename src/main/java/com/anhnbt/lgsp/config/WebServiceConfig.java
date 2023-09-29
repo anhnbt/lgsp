@@ -33,9 +33,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://dancuquocgia.bca");
 
-        // Đăng ký phần tử input và output với các tên khác nhau
-        wsdl11Definition.setRequestSuffix("Request"); // Không thêm suffix cho input
-        wsdl11Definition.setResponseSuffix("Response"); // Thêm suffix "Response" cho output
+        wsdl11Definition.setRequestSuffix("Request");
+        wsdl11Definition.setResponseSuffix("Response");
 
         wsdl11Definition.setSchema(xacThucThongTinCongDanSchema);
         return wsdl11Definition;
