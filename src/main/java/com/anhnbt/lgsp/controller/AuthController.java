@@ -60,14 +60,4 @@ public class AuthController {
         return new JsonResponse(userInfoService.addUser(userInfo));
     }
 
-    @GetMapping("/user/userProfile")
-    public String userProfile() {
-        return "Welcome to User Profile";
-    }
-
-    @GetMapping("/admin/adminProfile")
-    public String adminProfile() {
-        return "Welcome to Admin Profile";
-    }
-
 }
