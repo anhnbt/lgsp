@@ -42,6 +42,7 @@ public class SecurityConfig {
                                 AntPathRequestMatcher.antMatcher("/auth/addNewUser"),
                                 AntPathRequestMatcher.antMatcher("/auth/generateToken"),
                                 AntPathRequestMatcher.antMatcher("/webjars/**"),
+                                AntPathRequestMatcher.antMatcher("/v3/api-docs.yaml"),
                                 AntPathRequestMatcher.antMatcher("/v3/api-docs/**"),
                                 AntPathRequestMatcher.antMatcher("/swagger-ui/**")
                         ).permitAll()
