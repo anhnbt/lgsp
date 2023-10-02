@@ -41,11 +41,14 @@ public class SecurityConfig {
                                 AntPathRequestMatcher.antMatcher("/auth/welcome"),
                                 AntPathRequestMatcher.antMatcher("/auth/addNewUser"),
                                 AntPathRequestMatcher.antMatcher("/auth/generateToken"),
-                                AntPathRequestMatcher.antMatcher("/ws/**")
+                                AntPathRequestMatcher.antMatcher("/webjars/**"),
+                                AntPathRequestMatcher.antMatcher("/v3/api-docs/**"),
+                                AntPathRequestMatcher.antMatcher("/swagger-ui/**")
                         ).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/api/user/**"),
                                 AntPathRequestMatcher.antMatcher("/api/admin/**"),
-                                AntPathRequestMatcher.antMatcher("/api/**"))
+                                AntPathRequestMatcher.antMatcher("/api/**"),
+                                AntPathRequestMatcher.antMatcher("/KNTC/**"))
                         .authenticated() // Các API cần xác thực
                 )
                 .csrf(csrf -> csrf.disable())
